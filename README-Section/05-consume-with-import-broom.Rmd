@@ -1,0 +1,21 @@
+---
+output: md_document
+---
+
+### Reliance on Explicit Imports
+
+```{r 04-build-objects}
+# build objects
+library(redcapAPI)
+rcon <- redcapConnection(url = "https://not-a-valid-url.org",
+                         token = "Not-a-Valid-Token")
+fit <- lm(mpg ~ qsec, data = mtcars)
+```
+
+This solution breaks down when packages are not included in the `Imports:`.  While the previous example had a package that imported both `broom` and `broom.extend`, the following example only imports `broom`.  Thus, `consume` will fail for the `rcon` object.
+
+```{r 04-demonstrate, error = TRUE}
+library(broom.consumeUseImportBroom)
+consume(fit)
+consume(rcon)
+```
