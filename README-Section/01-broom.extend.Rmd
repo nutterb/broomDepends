@@ -1,0 +1,21 @@
+---
+output: md_document
+---
+  
+## Demonstration of the `broom.extend` tidier
+
+```{r 01-build-objects}
+# build objects
+library(redcapAPI)
+rcon <- redcapConnection(url = "https://not-a-valid-url.org",
+                         token = "Not-a-Valid-Token")
+fit <- lm(mpg ~ qsec, data = mtcars)
+```
+
+By default, `rcon` returns a list with the `redcapApiConnection` class.  The tidier from the `broom.extend` package makes a tibble with columns for the URL and the token used to access the API.
+
+```{r 01-demonstrate, error = TRUE}
+library(broom.extend)
+tidy(rcon)
+tidy(fit)
+```

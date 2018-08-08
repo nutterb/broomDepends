@@ -1,0 +1,27 @@
+---
+output: md_document
+---
+
+## Using Package Dependencies
+
+```{r 03-build-objects}
+# build objects
+library(redcapAPI)
+rcon <- redcapConnection(url = "https://not-a-valid-url.org",
+                         token = "Not-a-Valid-Token")
+fit <- lm(mpg ~ qsec, data = mtcars)
+```
+
+One way to get `consume` to work with methods from multiple packages is to include each package with a tidier you wish to use in the `Depends:` field of the `DESCRIPTION` file.  
+
+```{r 03-demonstrate, error = TRUE}
+library(broom.consumeUseDepends)
+consume(fit)
+consume(rcon)
+```
+
+While this approach works, it carries two major drawbacks
+
+1. I must know which packages have tidiers that I wish to utilize.  The `consume` function cannot operate with any arbitrary tidier.
+2. It could require loading multiple packages into the search path, which is considered bad practice.
+

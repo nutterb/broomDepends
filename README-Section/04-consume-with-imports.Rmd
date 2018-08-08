@@ -1,0 +1,21 @@
+---
+output: md_document
+---
+
+## Using Package Imports
+
+```{r 04-build-objects}
+# build objects
+library(redcapAPI)
+rcon <- redcapConnection(url = "https://not-a-valid-url.org",
+                         token = "Not-a-Valid-Token")
+fit <- lm(mpg ~ qsec, data = mtcars)
+```
+
+The natural inclination to avoid the second drawback of using `Depends:` is to use `Imports` instead. Including `#' @import broom` and `#' @import broom.extend` allows this to work for the tidiers in both packages. However, it still requires explicitly naming packages for which `consume` will work.  That is, it is not an arbitrary solution.
+
+```{r 04-demonstrate, error = TRUE}
+library(broom.consumeUseImports)
+consume(fit)
+consume(rcon)
+```

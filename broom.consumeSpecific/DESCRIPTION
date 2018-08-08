@@ -1,0 +1,22 @@
+Package: broom.consumeSpecific
+Title: An Example of Writing Broom Consumers for a Specific tidier
+Version: 0.0.1
+Authors@R: c(person("Benjamin", "Nutter", email = "benjamin.nutter@gmail.com", role = c("aut", "cre")))
+Description: The suite of 'broom' packages provides a framework to easily
+  extend the tidy, glance, and augment generics to new objects.  This package
+  attempt to illustrate how to construct the dependencies in order to 
+  consume existing 'tidy' methods.
+Depends:
+    R (>= 3.1.2)
+Imports:
+  modelgenerics
+Suggests:
+  knitr,
+  rmarkdown,
+  testthat
+License: MIT + file LICENSE
+VignetteBuilder: knitr
+URL: https://github.com/nutterb/broomDepends/broom.extend
+BugReports: https://github.com/nutterb/broomDepends
+RoxygenNote: 6.0.1
+NeedsCompilation: no

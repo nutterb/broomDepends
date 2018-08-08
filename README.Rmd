@@ -1,0 +1,27 @@
+---
+output: md_document
+---
+
+```{r, echo = FALSE, warning = FALSE, include = FALSE}
+folder_name <- "README-Section"
+
+files <- list.files(folder_name, 
+                    pattern = "[.]Rmd$")
+
+# for (i in seq_along(files)){
+#   rmarkdown::render(file.path(folder_name, files[i]),
+#                     envir = new.env(),
+#                     quiet = TRUE)
+# }
+```
+
+```{r, results = 'asis', echo = FALSE}
+library(magrittr)
+md_files <- list.files(folder_name,
+                       pattern = "[.]md$")
+md_text <- lapply(file.path(folder_name, md_files),
+                  readLines) %>% 
+  lapply(paste0, collapse = "\n") %>% 
+  paste0(collapse = "\n\n") %>% 
+  cat()
+```
